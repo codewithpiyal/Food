@@ -4,13 +4,15 @@ import axios from 'axios'
 
 
 const Category = () => {
+    
+  
 
     const [categ, setCateg] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get('http://127.0.0.1:8000/api/category/')
+                const res = await axios.get('http://127.0.0.1:8000/api/categories/')
                 setCateg(res.data)
 
             } catch (error) {
@@ -59,9 +61,10 @@ const Category = () => {
         <Stack Container direction={'row'} mt={4} spacing={3} ml={3} sx={{ overflow: 'auto' }}>
             {
                 categ.map((cElem) => {
+                    
                     return (
                         <CardBox key={cElem.id}>
-                            <StyledCard sx={{ backgroundImage: `url(${cElem.image})` }} />
+                            <StyledCard sx={cElem.image} />
                             <StyledTypography>{cElem.name}</StyledTypography>
                         </CardBox>
                     )
@@ -73,4 +76,4 @@ const Category = () => {
     )
 }
 
-export default Category
+export default Category 

@@ -1,13 +1,13 @@
-from django.urls import path, include
-from .views import blogApiView, categoryApiView, CategoryPostApiView, PopularPostApiView
-from rest_framework import routers
+from django.urls import path  
+from .views import BlogView,CategoryView,categoryBasedBlog,categoryBasedPopularBlog
 
-router = routers.SimpleRouter()
-router.register("blog", blogApiView, basename="blogs")
-router.register("category", categoryApiView, basename="category")
-router.register(
-    "categoryBasedBlogs", CategoryPostApiView, basename="categoryBasedBlogs"
-)
-router.register("popularBasedBlogs", PopularPostApiView, basename="popularBasedBlogs")
+urlpatterns = [
+    path('blogs/', BlogView.as_view(),name='blogs'),
+    path('blogs/<int:pk>/',BlogView.as_view(),name='blog'),
+    path('categories/',CategoryView.as_view(),name='categories'),
+    path('categories/<int:pk>/',CategoryView.as_view(),name='category'),
+    path('categoriesbasedblog/<int:pk>/',categoryBasedBlog.as_view(),name='categorybasedblog'),
+    path('categoriesbasedpopularblog/<str:popular>/',categoryBasedPopularBlog.as_view(),name='categorybasedpopularblog'),
 
-urlpatterns = [path("", include(router.urls))]
+]
+

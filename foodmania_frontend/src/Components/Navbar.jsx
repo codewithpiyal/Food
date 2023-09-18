@@ -25,7 +25,7 @@ const Navbar = () => {
                 <StyledToolbar>
                     <Box flex={{ xs: 25, md: 1 }}>
                         <Link href='http://localhost:3000/detail' sx={{ textDecoration: 'none' }}>
-                            <Typography variant='h5' color={'tomato'} sx={{ fontFamily: 'Splash,cursive', textAlign: { xs: 'center', md: 'left' } }}>Codingstrade</Typography>
+                            <Typography variant='h5' color={'tomato'} sx={{ fontFamily: 'Splash,cursive', textAlign: { xs: 'center', md: 'left' } }}>Foodmania</Typography>
                         </Link>
                     </Box>
                     <MenuBox flex={1}>
