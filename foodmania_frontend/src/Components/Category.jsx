@@ -4,11 +4,7 @@ import axios from 'axios'
 
 
 const Category = () => {
-    
-  
-
     const [categ, setCateg] = useState([])
-
     useEffect(() => {
         const fetchData = async () => {
             try {
