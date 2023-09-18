@@ -4,7 +4,10 @@ import axios from 'axios'
 
 
 const Category = () => {
+    
+
     const [categ, setCateg] = useState([])
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -18,7 +21,7 @@ const Category = () => {
         fetchData()
     }, [])
 
-
+    const baseUrl = 'http://127.0.0.1:8000';
     const StyledCard = styled(Box)(({ theme }) => ({
         display: 'flex',
         justifyContent: 'center',
@@ -60,7 +63,7 @@ const Category = () => {
                     
                     return (
                         <CardBox key={cElem.id}>
-                            <StyledCard sx={cElem.image} />
+                            <StyledCard sx={{ backgroundImage: `url(${baseUrl}${cElem.image})` }}/>
                             <StyledTypography>{cElem.name}</StyledTypography>
                         </CardBox>
                     )
@@ -72,4 +75,4 @@ const Category = () => {
     )
 }
 
-export default Category 
+export default Category      
