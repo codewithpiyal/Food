@@ -26,11 +26,8 @@ const Cards = ({ myDirection, title, excerpt, image, blogHref }) => {
                             <Typography gutterBottom variant='h5' align='center'>
                                 {title}
                             </Typography>
-                            <Typography gutterBottom variant='h7' align='center'>
+                            <Typography  variant='h6' color="text.secondary" >
                                 {excerpt}
-                            </Typography>
-                            <Typography gutterBottom variant='h7' align='center'>
-                                {blogHref}
                             </Typography>
                             <CardActions>
                                 <Button sx={{ color: 'tomato' }} size="large">

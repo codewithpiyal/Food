@@ -44,7 +44,7 @@ const Posts = () => {
                     blog.map((cElem) => {
                         return (
                             <Grid item xs key={cElem.id}>
-                                <Cards title={cElem.title} image={cElem.image}  excerpt={cElem.excerpt} myDirection={'flex'} />
+                                <Cards title={cElem.title} image={cElem.image} blogHref={`/detail/${cElem.slug}`} excerpt={cElem.excerpt} myDirection={'flex'} />
                             </Grid>
                         )
                     })
@@ -59,7 +59,7 @@ const Posts = () => {
                     post.map((cElem) => {
                         return (
                             <Grid item xs={6} md={6} key={cElem.id}>
-                                <Cards title={cElem.title} image={cElem.image}  excerpt={cElem.excerpt} myDirection={'block'} />
+                                <Cards title={cElem.title} image={cElem.image} blogHref={`/detail/${cElem.slug}`}  excerpt={cElem.excerpt} myDirection={'block'} />
                             </Grid>
                         )
                     })
