@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { AppBar, Box, Drawer, List, Link, ListItem, ListItemButton, styled, TextField, Toolbar, Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
+
 const Navbar = () => {
     const StyledToolbar = styled(Toolbar)({
         display: "flex",
@@ -25,7 +26,7 @@ const Navbar = () => {
                 <StyledToolbar>
                     <Box flex={{ xs: 25, md: 1 }}>
                         <Link href='http://localhost:3000/detail' sx={{ textDecoration: 'none' }}>
-                            <Typography variant='h5' color={'tomato'} sx={{ fontFamily: 'Splash,cursive', textAlign: { xs: 'center', md: 'left' } }}>Foodmania</Typography>
+                            <Typography variant='h5' color={'Highlight'} sx={{ fontFamily: 'Splash,cursive', textAlign: { xs: 'center', md: 'left' } }}>Foodmania</Typography>
                         </Link>
                     </Box>
                     <MenuBox flex={1}>
@@ -58,15 +59,16 @@ const Navbar = () => {
                         </ListItem>
                     </List>
                     <TextField sx={{ display: { xs: 'flex', md: 'none' } }} color="warning" label="search" variant='outlined' />
+                    
                 </Drawer>
 
             </AppBar>
             <Box sx={{ display: 'flex', justifyContent: 'center', padding: 1, flexDirection: { xs: 'column', md: 'row' } }}>
                 <Typography align='center' variant='h5' mr={{ xs: 0, mr: 1 }}>
-                    Popular Receipes made for customers
+                    Popular Receipes made for foodies
                 </Typography>
                 <Typography variant='h5' align='center' color={'tomato'} sx={{ fontFamily: 'Splash,cursive' }}>
-                    Popular Receipes made for customers
+                    Popular Receipes made for foodies
                 </Typography>
             </Box>
         </>)

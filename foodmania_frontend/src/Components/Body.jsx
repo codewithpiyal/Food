@@ -1,11 +1,23 @@
 import { Container, Grid, styled, Box, Typography } from '@mui/material'
-import Berger from '../static/Berger.jpg'
-import Berdover from '../static/Berdover.jpg'
-import Biriyani from '../static/Biriyani.jpg'
-import Cake from '../static/Cake.jpg'
 import Category from './Category'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Body = () => {
+    const [bodydata, setBodyData] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get('http://127.0.0.1:8000/api/categoriesbasedpopularblog/popular/')
+                setBodyData(res.data)
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData()
+    }, [])
     const StyledCard = styled(Box)(({ theme }) => ({
         display: 'flex',
         justifyContent: 'center',
@@ -39,47 +51,26 @@ const Body = () => {
         [theme.breakpoints.down('md')]: {
             paddingTop: '40%'
         },
-    })
-
-    )
+    }))
+    const baseUrl = 'http://127.0.0.1:8000';
     return (
         <Container>
             <Grid container direction={'row'} columnSpacing={2} rowSpacing={2}>
-                <Grid item md={3} xs={6}>
+                {bodydata.map((cElem) => {
+                    return (
+                        <Grid item md={3} xs={6} key={cElem.id}>
 
-                    <StyledCard sx={{ backgroundImage: `url(${Berger})` }}>
-                        <StyledWrapper>
-                            <StyledTypography>Burger</StyledTypography>
-                        </StyledWrapper>
+                            <StyledCard sx={{ backgroundImage: `url(${baseUrl}${cElem.image})` }}>
+                                <StyledWrapper>
+                                    <StyledTypography>{cElem.title}</StyledTypography>
+                                </StyledWrapper>
 
-                    </StyledCard>
+                            </StyledCard>
 
 
-                </Grid>
-                <Grid item md={3} xs={6}>
-                    <StyledCard sx={{ backgroundImage: `url(${Berdover})` }}>
-                        <StyledWrapper>
-                            <StyledTypography>Berdover</StyledTypography>
-                        </StyledWrapper>
-
-                    </StyledCard>
-                </Grid>
-                <Grid item md={3} xs={6}>
-                    <StyledCard sx={{ backgroundImage: `url(${Biriyani})` }}>
-                        <StyledWrapper>
-                            <StyledTypography>Biriyani</StyledTypography>
-                        </StyledWrapper>
-
-                    </StyledCard>
-                </Grid>
-                <Grid item md={3} xs={6}>
-                    <StyledCard sx={{ backgroundImage: `url(${Cake})` }}>
-                        <StyledWrapper>
-                            <StyledTypography>Cake</StyledTypography>
-                        </StyledWrapper>
-
-                    </StyledCard>
-                </Grid>
+                        </Grid>
+                    )
+                })}
 
             </Grid>
             <Category />

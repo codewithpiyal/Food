@@ -50,7 +50,7 @@ class categoryBasedBlog(APIView):
     
 class categoryBasedPopularBlog(APIView):
     def get(self,request,popular):
-        blogs_data=blog.objects.filter(postlabel__iexact=popular)  
+        blogs_data=blog.objects.filter(postlabel__iexact=popular).order_by('-id')[0:4]  
         serializer_data= blogSerializer(blogs_data,many=True)
         return Response(serializer_data.data)  
     

@@ -1,17 +1,26 @@
 import { Typography, styled, Box, Stack } from '@mui/material'
-import Berger from '../static/Berger.jpg'
-import Berdover from '../static/Berdover.jpg'
-import Biriyani from '../static/Biriyani.jpg'
-import Breadegganish from '../static/Breadegganish.jpg'
-import Cake from '../static/Cake.jpg'
-import capachino from '../static/capachino.jpg'
-import Limecup from '../static/Limecup.jpg'
-import Lit from '../static/Lit.jpg'
-import Momo from '../static/Momo.jpg'
-import Onamola from '../static/Onamola.jpg'
-import pancake from '../static/pancake.jpg'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Suggestions = () => {
+    const [popular, setPopular] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get('http://127.0.0.1:8000/api/categoriesbasedpopularblog/popular/')
+                setPopular(res.data)
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData()
+    }, [])
+
+
+    const baseUrl = 'http://127.0.0.1:8000';
+
     const StyledCard = styled(Box)(({ theme }) => ({
         display: 'flex',
         justifyContent: 'center',
@@ -48,50 +57,17 @@ const Suggestions = () => {
     })
     return (
         <Stack container direction={'row'} justifyContent={'center'} alignItems={'center'} mt={4} spacing={3} ml={3} sx={{ overflow: 'auto' }}>
-            <CardBox>
-                <StyledCard sx={{ backgroundImage: `url(${Berger})` }} />
-                <StyledTypography>Berger</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard sx={{ backgroundImage: `url(${Berdover})` }} />
-                <StyledTypography>Berdover</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard sx={{ backgroundImage: `url(${Biriyani})` }} />
-                <StyledTypography>Biriyani</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard sx={{ backgroundImage: `url(${Breadegganish})` }} />
-                <StyledTypography>Breadegganish</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard sx={{ backgroundImage: `url(${Cake})` }} />
-                <StyledTypography>Cake</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard sx={{ backgroundImage: `url(${capachino})` }} />
-                <StyledTypography>capachino</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard sx={{ backgroundImage: `url(${Limecup})` }} />
-                <StyledTypography>Limecup</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard sx={{ backgroundImage: `url(${Lit})` }} />
-                <StyledTypography>Lit</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard sx={{ backgroundImage: `url(${Momo})` }} />
-                <StyledTypography>Momo</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard sx={{ backgroundImage: `url(${Onamola})` }} />
-                <StyledTypography>Onamola</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard sx={{ backgroundImage: `url(${pancake})` }} />
-                <StyledTypography>pancake</StyledTypography>
-            </CardBox>
+            {popular.map((cElem) => {
+                return (
+                    <div key={cElem.id}>
+                        <CardBox >
+                            <StyledCard sx={{ backgroundImage: `url(${baseUrl}${cElem.image})` }} />
+                            <StyledTypography>{cElem.title}</StyledTypography>
+                        </CardBox>
+                    </div>
+                )
+            })}
+
 
         </Stack>
     )
